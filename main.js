@@ -9,7 +9,6 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1200
 );
-camera.position.set(3, 1, 4);
 
 //renderer
 const app = document.querySelector("#app");
