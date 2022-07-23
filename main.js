@@ -5,17 +5,17 @@ scene.background = new THREE.Color("rgb(20,20,20)");
 const app = document.querySelector("#app");
 
 //renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(app.offsetWidth, app.offsetHeight);
+const renderer = new THREE.WebGLRenderer({ antialias: true }); // WebGL Renderer
+renderer.setPixelRatio(window.devicePixelRatio); // set device pixel ratio
+renderer.setSize(app.offsetWidth, app.offsetHeight); // Resizes the output canvas to given width and height
 app.appendChild(renderer.domElement);
 
 //camera
 const camera = new THREE.PerspectiveCamera(
-  60,
-  app.offsetWidth/app.offsetHeight,
-  0.1,
-  1200
+  60, // fov
+  app.offsetWidth/app.offsetHeight, // aspect ratio
+  0.1, // near
+  1200 // far
 );
 camera.position.set(0, 0, 5);
 
