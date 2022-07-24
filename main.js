@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/GLTFLoader.js";
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color("rgb(20,20,20)");
@@ -19,22 +20,21 @@ const camera = new THREE.PerspectiveCamera(
   0.1, // near
   1200 // far
 );
-camera.position.set(0, 2, 50);
+camera.position.set(0, 0, 5);
 
-const geometry = new THREE.SphereGeometry(20,100,100);
-const loader = new THREE.TextureLoader();
-const material = new THREE.MeshStandardMaterial({
-  map: loader.load("./textures/colormap.jpg")
-})
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
+var loader = new GLTFLoader();
+loader.crossOrigin = true;
+loader.load("./models/scene.gltf", function (data) {
+  data.scene.scale.set(5, 5, 5);
+  var object = data.scene;
+  object.position.set(0, -10, 0);
+  scene.add(object);
+});
 
-// lights
-const light1 = new THREE.HemisphereLight({ color: 0xffffff });
-// const h1 = new THREE.HemisphereLightHelper(light1, 2);
-light1.position.set(30, 0, 0);
-// scene.add(h1);
-scene.add(light1);
+//lights
+var light = new THREE.PointLight(0xffffcc, 4);
+light.position.set(0, -10, 20);
+scene.add(light);
 
 // orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
