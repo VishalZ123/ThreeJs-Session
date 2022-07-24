@@ -21,21 +21,20 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.set(0, 2, 50);
 
-const geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
-// const material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-const material = new THREE.MeshPhongMaterial({ color: 0x00ffff});
-const material2 = new THREE.MeshLambertMaterial({ color: 0x00ffff});
-const mesh1 = new THREE.Mesh(geometry, material);
-const mesh2 = new THREE.Mesh(geometry, material2);
-mesh1.position.x = -20;
-mesh2.position.x = 20;
-
-scene.add(mesh1, mesh2);
+const geometry = new THREE.SphereGeometry(20,100,100);
+const loader = new THREE.TextureLoader();
+const material = new THREE.MeshStandardMaterial({
+  map: loader.load("./textures/colormap.jpg")
+})
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
 
 // lights
-const light = new THREE.DirectionalLight({color: 0x000});
-light.position.set(0,0,10);
-scene.add(light);
+const light1 = new THREE.HemisphereLight({ color: 0xffffff });
+// const h1 = new THREE.HemisphereLightHelper(light1, 2);
+light1.position.set(30, 0, 0);
+// scene.add(h1);
+scene.add(light1);
 
 // orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
