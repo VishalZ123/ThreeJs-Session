@@ -33,7 +33,7 @@ mesh2.position.x = 20;
 scene.add(mesh1, mesh2);
 
 // lights
-const light = new THREE.DirectionalLight({color: 0x000});
+const light = new THREE.DirectionalLight({color: 0xfff});
 light.position.set(0,0,10);
 scene.add(light);
 
