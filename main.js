@@ -5,7 +5,7 @@ scene.background = new THREE.Color("rgb(20,20,20)");
 const app = document.querySelector("#app");
 
 //renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true }); // WebGL Renderer
+const renderer = new THREE.WebGLRenderer(); // WebGL Renderer
 renderer.setPixelRatio(window.devicePixelRatio); // set device pixel ratio
 renderer.setSize(app.offsetWidth, app.offsetHeight); // Resizes the output canvas to given width and height
 app.appendChild(renderer.domElement);
